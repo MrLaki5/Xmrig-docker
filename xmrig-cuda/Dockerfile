@@ -25,8 +25,6 @@ RUN git clone https://github.com/xmrig/xmrig.git && \
     cmake .. && \ 
     make
 
-RUN mv /xmrig-cuda/build/libxmrig-cuda.so /xmrig/build/libxmrig-cuda.so
-
 FROM nvidia/cuda:11.0-runtime-ubuntu20.04
 
 RUN apt update && \
@@ -36,7 +34,8 @@ RUN apt update && \
 # Linking of nvml
 RUN ln -s /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
 
-COPY --from=builder /xmrig/build /xmrig
+COPY --from=builder /xmrig/build/xmrig /xmrig/xmrig
+COPY --from=builder /xmrig-cuda/build/libxmrig-cuda.so /xmrig/libxmrig-cuda.so
 WORKDIR /xmrig
 
 ENTRYPOINT ["./xmrig"]

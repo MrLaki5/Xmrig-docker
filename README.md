@@ -13,7 +13,7 @@ Note: For cuda docker image Nvidia-docker 2.0 is required. [install](https://doc
 docker build ./xmrig-cuda -t xmrig-cuda-docker
 ```
 
-## Run image
+## Run
 ### xmrig cpu
 ``` bash
 docker run --rm xmrig-docker -o <url of mining server>:<port> -u <wallet address> -p <device name>
